@@ -10,10 +10,11 @@
   ],
   "main": "./lib/underscore-plus.js",
   "scripts": {
-    "prepublish": "grunt clean coffee lint",
-    "test": "grunt test",
-    "babel": "env env BABEL_ENV=cjs babel src --out-dir lib",
-    "prepare": "npm run babel"
+    "clean": "shx rm -rf lib",
+    "test": "jasmine-focused --captureExceptions --coffee spec",
+    "build": "env env BABEL_ENV=cjs babel src --out-dir lib && shx cp lib/* dist",
+    "prepare": "npm run build",
+    "prepublish": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
@@ -31,17 +32,12 @@
   "devDependencies": {
     "@types/underscore": "^1.10.3",
     "jasmine-focused": "1.x",
-    "grunt-contrib-coffee": "~0.9.0",
-    "grunt-cli": "~0.1.8",
-    "grunt": "~0.4.1",
-    "grunt-shell": "~0.2.2",
-    "grunt-coffeelint": "0.0.6",
-    "rimraf": "~2.5.2",
     "@babel/cli": "7.10.3",
     "@babel/core": "7.10.3",
     "@babel/plugin-proposal-export-namespace-from": "^7.10.4",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
     "@babel/plugin-proposal-optional-chaining": "^7.10.4",
-    "@babel/plugin-transform-modules-commonjs": "^7.10.4"
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "shx": "^0.3.2"
   }
 }
