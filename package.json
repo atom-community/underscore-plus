@@ -9,12 +9,16 @@
     }
   ],
   "main": "./lib/underscore-plus.js",
+  "es": "./modules/underscore-plus.js",
   "scripts": {
     "clean": "shx rm -rf lib",
     "test": "jasmine-focused --captureExceptions --coffee spec",
-    "build": "env env BABEL_ENV=cjs babel src --out-dir lib && shx cp lib/* dist",
-    "prepare": "npm run build",
-    "prepublish": "npm run clean && npm run build"
+    "bower": "shx cp lib/* dist",
+    "babel": "npm run clean && shx cp -r lib dist && env NODE_ENV=development env BABEL_ENV=development babel dist --out-dir dist",
+    "dev": "npm run clean && env NODE_ENV=development env BABEL_ENV=production rollup -c -w",
+    "build": "npm run clean && env NODE_ENV=production env BABEL_ENV=production rollup -c ",
+    "prepare": "npm run build && npm run bower",
+    "prepublish": "npm run clean && npm run build && npm run bower"
   },
   "repository": {
     "type": "git",
@@ -32,6 +36,11 @@
   "devDependencies": {
     "@types/underscore": "^1.10.3",
     "jasmine-focused": "1.x",
+    "rollup": "^2.18.2",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.1.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^6.1.0",
     "@babel/cli": "7.10.3",
     "@babel/core": "7.10.3",
     "@babel/plugin-proposal-export-namespace-from": "^7.10.4",
