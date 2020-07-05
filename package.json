@@ -1,11 +1,11 @@
 {
-  "name": "underscore-plus",
-  "version": "1.7.0",
+  "name": "@aminya/underscore-plus",
+  "version": "1.8.0",
   "description": "Underscore plus additional utilities",
   "licenses": [
     {
       "type": "MIT",
-      "url": "http://github.com/atom/underscore-plus/raw/master/LICENSE.md"
+      "url": "http://github.com/aminya/underscore-plus/raw/master/LICENSE.md"
     }
   ],
   "main": "./lib/underscore-plus.js",
@@ -22,10 +22,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/atom/underscore-plus.git"
+    "url": "https://github.com/aminya/underscore-plus.git"
   },
   "bugs": {
-    "url": "https://github.com/atom/underscore-plus/issues"
+    "url": "https://github.com/aminya/underscore-plus/issues"
   },
   "keywords": [
     "underscore"
