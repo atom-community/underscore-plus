@@ -13,12 +13,12 @@
   "scripts": {
     "clean": "shx rm -rf lib",
     "test": "jasmine-focused --captureExceptions --coffee spec",
+    "lint": "coffeelint spec/*.coffee",
     "bower": "shx cp lib/* dist",
-    "babel": "npm run clean && shx cp -r lib dist && env NODE_ENV=development env BABEL_ENV=development babel dist --out-dir dist",
-    "dev": "npm run clean && env NODE_ENV=development env BABEL_ENV=production rollup -c -w",
-    "build": "npm run clean && env NODE_ENV=production env BABEL_ENV=production rollup -c ",
-    "prepare": "npm run build && npm run bower",
-    "prepublish": "npm run clean && npm run build && npm run bower"
+    "babel": "npm run clean && shx cp -r src lib && cross-env NODE_ENV=development cross-env BABEL_ENV=development babel lib --out-dir lib",
+    "dev": "npm run clean && cross-env NODE_ENV=development cross-env BABEL_ENV=production rollup -c -w",
+    "build": "npm run clean && cross-env NODE_ENV=production cross-env BABEL_ENV=production rollup -c ",
+    "prepare": "npm run clean && npm run build && npm run bower"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
   "devDependencies": {
     "@types/underscore": "^1.10.3",
     "jasmine-focused": "1.x",
+    "coffeelint": "^2.1.0",
     "rollup": "^2.18.2",
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.1.0",
@@ -47,6 +48,15 @@
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.10.4",
     "@babel/plugin-proposal-optional-chaining": "^7.10.4",
     "@babel/plugin-transform-modules-commonjs": "^7.10.4",
-    "shx": "^0.3.2"
+    "shx": "^0.3.2",
+    "cross-env": "^7.0.2"
+  },
+  "coffeelintConfig": {
+    "no_empty_param_list": {
+      "level": "error"
+    },
+    "max_line_length": {
+      "level": "ignore"
+    }
   }
 }
